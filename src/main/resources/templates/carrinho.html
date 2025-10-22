@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seu Carrinho</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/cart.css">
+</head>
+
+<body>
+
+    <div class="cart-container">
+        <h1><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h1>
+
+        <p><strong>ID do carrinho:</strong> <span th:text="${cartId}"></span></p>
+
+        <form th:action="@{/carrinho/remember}" method="post" class="remember-form">
+            <label>
+                <input type="checkbox" name="on" th:checked="${persistent}"> Lembrar carrinho
+            </label>
+            <button type="submit" class="btn-small">Salvar</button>
+        </form>
+
+        <div th:if="${#maps.isEmpty(items)}">
+            <p>Seu carrinho está vazio.</p>
+            <a th:href="@{/loja}" class="btn">← Voltar à Loja</a>
+        </div>
+
+        <div th:if="${!#maps.isEmpty(items)}">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Produto (SKU)</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="entry : ${items}">
+                        <td th:text="${entry.key}"></td>
+                        <td>
+                            <div class="qty-controls">
+                                <form th:action="@{/carrinho/remove}" method="post">
+                                    <input type="hidden" name="sku" th:value="${entry.key}">
+                                    <button type="submit" class="btn-small">−</button>
+                                </form>
+
+                                <span th:text="${entry.value}" class="qty-number"></span>
+
+                                <form th:action="@{/carrinho/add}" method="post">
+                                    <input type="hidden" name="sku" th:value="${entry.key}">
+                                    <button type="submit" class="btn-small">+</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <div class="summary-box">
+                    <h3>Total de Itens</h3>
+                    <p><strong th:text="${total}"></strong></p>
+
+                </div>
+            </div>
+
+            <div class="actions">
+                <a th:href="@{/loja}" class="btn">← Voltar à Loja</a>
+                <form th:action="@{/carrinho/limpar}" method="post">
+                    <button class="btn" type="submit">Esvaziar Carrinho</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

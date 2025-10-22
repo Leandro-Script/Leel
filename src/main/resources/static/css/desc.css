@@ -1,0 +1,31 @@
+.description-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sobre {
+    width: 40%;
+}
+
+.btn-default {
+    width: 100%;
+    font-size: 17px;
+    margin: 5px;
+}
+
+.btn-adicionar {
+    color: #FFCB45;
+    background-color: #fff6dea8;
+}
+
+.div-btn {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 8px;
+    padding: 25px 16px;
+}

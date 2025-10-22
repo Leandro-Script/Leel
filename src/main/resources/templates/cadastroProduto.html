@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cadastroProduto.css}">
+
+    <title>Cadastrar Produto</title>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <form action="">
+            <h1>Cadastrar Produto</h1>
+
+            <div class="input-box">
+                <input type="text" placeholder="Nome do produto">
+                <i class="bx bxs-package"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="number" placeholder="Valor">
+                <i class="bx bxs-dollar-circle"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="Descrição">
+                <i class="bx bxs-file"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="number" placeholder="Quantidade">
+                <i class="bx bxs-calculator"></i>
+            </div>
+
+            <div class="file-upload">
+                <label for="fileInput" class="file-label">
+                    <i class="bx bxs-cloud-upload"></i>
+                    <span id="fileName">Nenhum arquivo escolhido</span>
+                </label>
+                <input type="file" id="fileInput">
+            </div>
+
+
+            <button type="submit" class="login">Cadastrar</button>
+        </form>
+
+    </main>
+
+</body>
+
+</html>
