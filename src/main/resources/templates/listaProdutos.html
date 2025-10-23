@@ -5,330 +5,264 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link rel="icon" type="image/png" href="/img/logozin.png">
-    <title>Produtos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/stylesList.css}">
+    <title>Produtos - Batuketa</title>
 </head>
 
 <body>
-    <header>
-        <nav class="nav-bar">
-            <i class="fas fa-headphones" id="nav-logo"> B A T U K E T A</i>
 
-            <ul class="nav-list">
-                <li class="nav-item active">
-                    <a href="#home">Home</a>
-                </li>
+    <main class="container page-produtos">
 
-                <li class="nav-item">
-                    <a href="#produtos">Produtos</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#notas">Avaliações</a>
-                </li>
-
-            </ul>
-
-            <button class="btn-default">Comprar</button>
-
-            <button class="mobile-btn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </nav>
-
-        <div class="mobile-menu">
-            <ul class="mobile-nav-list">
-                <li class="nav-item">
-                    <a href="#home">Início</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#sobre">Sobre</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#instrumentos">Instrumentos</a>
-                </li>
-            </ul>
-
-            <button class="btn-default">Comprar</button>
-
+        <div class="titulo-pagina">
+            <h2 class="section-title">Instrumentos</h2>
+            <h3 class="section-subtitle">Nossos instrumentos especiais</h3>
         </div>
-    </header>
-    <section class="menu" id="produtos">
-        <h2 class="section-title">Instrumentos</h2>
-        <h3 class="secton-subtitle">Nossos instrumentos especiais</h3>
 
-        <div class="drums">
-            <div class="drum">
-                <div class="drum-heart">
-                    <i class="fa solid fa-heart"></i>
+        <div class="produtos-layout">
+
+            <aside class="filtros">
+                <h3>Filtros</h3>
+
+                <div class="filtro-grupo">
+                    <h4>Categoria</h4>
+                    <ul>
+                        <li><label><input type="checkbox" name="categoria" value="bateria"> Baterias</label></li>
+                        <li><label><input type="checkbox" name="categoria" value="pandeiro"> Pandeiros</label></li>
+                        <li><label><input type="checkbox" name="categoria" value="prato"> Pratos</label></li>
+                        <li><label><input type="checkbox" name="categoria" value="acessorio"> Acessórios</label></li>
+                    </ul>
                 </div>
 
-                <img src="/img/bateria.png" alt="" class="drum-image">
-
-                <h3 class="drum-title">
-                    Bateria Massa
-                </h3>
-
-                <span class="drum-description">
-                    Muito legal
-                </span>
-
-                <div class="drum-rate">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(500+)</span>
+                <div class="filtro-grupo">
+                    <h4>Marca</h4>
+                    <ul>
+                        <li><label><input type="checkbox" name="marca" value="contemporanea"> Contemporânea</label></li>
+                        <li><label><input type="checkbox" name="marca" value="zildjian"> Zildjian</label></li>
+                        <li><label><input type="checkbox" name="marca" value="sabian"> Sabian</label></li>
+                        <li><label><input type="checkbox" name="marca" value="rmv"> RMV</label></li>
+                    </ul>
                 </div>
 
-                <div class="drum-price">
-                    <h4>R$2500,00</h4>
-                    <button class="btn-default">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </button>
+                <div class="filtro-grupo">
+                    <h4>Faixa de Preço</h4>
+                    <ul>
+                        <li><label><input type="radio" name="preco" value="0-500"> R$0 - R$500</label></li>
+                        <li><label><input type="radio" name="preco" value="501-1000"> R$501 - R$1000</label></li>
+                        <li><label><input type="radio" name="preco" value="1001+"> Acima de R$1000</label></li>
+                    </ul>
                 </div>
 
-            </div>
+                <button class="btn-filtrar">Aplicar Filtros</button>
+            </aside>
 
-            <div class="drum">
-                <div class="drum-heart">
-                    <i class="fa solid fa-heart"></i>
+            <section class="grid-produtos">
+
+                <div class="ordenacao">
+                    <label for="ordenar">Ordenar por:</label>
+                    <select name="ordenar" id="ordenar">
+                        <option value="populares">Mais Populares</option>
+                        <option value="menor-preco">Menor Preço</option>
+                        <option value="maior-preco">Maior Preço</option>
+                        <option value="nome">Nome (A-Z)</option>
+                    </select>
                 </div>
 
-                <img src="/img/bateria.png" alt="" class="drum-image">
-
-                <h3 class="drum-title">
-                    Bateria Massa
-                </h3>
-
-                <span class="drum-description">
-                    Muito legal
-                </span>
-
-                <div class="drum-rate">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(500+)</span>
-                </div>
-
-                <div class="drum-price">
-                    <h4>R$2500,00</h4>
-                    <button class="btn-default">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="drum">
-                <div class="drum-heart">
-                    <i class="fa solid fa-heart"></i>
-                </div>
-
-                <img src="/img/bateria.png" alt="" class="drum-image">
-
-                <h3 class="drum-title">
-                    Bateria Massa
-                </h3>
-
-                <span class="drum-description">
-                    Muito legal
-                </span>
-
-                <div class="drum-rate">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(500+)</span>
-                </div>
-
-                <div class="drum-price">
-                    <h4>R$2500,00</h4>
-                    <button class="btn-default">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="drum">
-                <div class="drum-heart">
-                    <i class="fa solid fa-heart"></i>
-                </div>
-
-                <img src="/img/bateria.png" alt="" class="drum-image">
-
-                <h3 class="drum-title">
-                    Bateria Massa
-                </h3>
-
-                <span class="drum-description">
-                    Muito legal
-                </span>
-
-                <div class="drum-rate">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(500+)</span>
-                </div>
-
-                <div class="drum-price">
-                    <h4>R$2500,00</h4>
-                    <button class="btn-default">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
                 <div class="drums">
-            <div class="drum">
-                <div class="drum-heart">
-                    <i class="fa solid fa-heart"></i>
+
+                    <div class="drum">
+                        <div class="drum-heart">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="img/bateria.png" alt="Bateria" class="drum-image">
+                        <h3 class="drum-title">Bateria Massa</h3>
+                        <span class="drum-description">Muito legal</span>
+                        <div class="drum-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(500+)</span>
+                        </div>
+                        <div class="drum-price">
+                            <h4>R$2500,00</h4>
+                            <button class="btn-card-add">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="drum">
+                        <div class="drum-heart">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="img/bateria.png" alt="Bateria" class="drum-image">
+                        <h3 class="drum-title">Bateria Massa</h3>
+                        <span class="drum-description">Muito legal</span>
+                        <div class="drum-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(500+)</span>
+                        </div>
+                        <div class="drum-price">
+                            <h4>R$2500,00</h4>
+                            <button class="btn-card-add">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="drum">
+                        <div class="drum-heart">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="img/bateria.png" alt="Bateria" class="drum-image">
+                        <h3 class="drum-title">Bateria Massa</h3>
+                        <span class="drum-description">Muito legal</span>
+                        <div class="drum-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(500+)</span>
+                        </div>
+                        <div class="drum-price">
+                            <h4>R$2500,00</h4>
+                            <button class="btn-card-add">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="drum">
+                        <div class="drum-heart">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="img/bateria.png" alt="Bateria" class="drum-image">
+                        <h3 class="drum-title">Bateria Massa</h3>
+                        <span class="drum-description">Muito legal</span>
+                        <div class="drum-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(500+)</span>
+                        </div>
+                        <div class="drum-price">
+                            <h4>R$2500,00</h4>
+                            <button class="btn-card-add">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="drum">
+                        <div class="drum-heart">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="img/bateria.png" alt="Bateria" class="drum-image">
+                        <h3 class="drum-title">Bateria Massa</h3>
+                        <span class="drum-description">Muito legal</span>
+                        <div class="drum-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(500+)</span>
+                        </div>
+                        <div class="drum-price">
+                            <h4>R$2500,00</h4>
+                            <button class="btn-card-add">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="drum">
+                        <div class="drum-heart">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="img/bateria.png" alt="Bateria" class="drum-image">
+                        <h3 class="drum-title">Bateria Massa</h3>
+                        <span class="drum-description">Muito legal</span>
+                        <div class="drum-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(500+)</span>
+                        </div>
+                        <div class="drum-price">
+                            <h4>R$2500,00</h4>
+                            <button class="btn-card-add">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="drum">
+                        <div class="drum-heart">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="img/bateria.png" alt="Bateria" class="drum-image">
+                        <h3 class="drum-title">Bateria Massa</h3>
+                        <span class="drum-description">Muito legal</span>
+                        <div class="drum-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(500+)</span>
+                        </div>
+                        <div class="drum-price">
+                            <h4>R$2500,00</h4>
+                            <button class="btn-card-add">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="drum">
+                        <div class="drum-heart">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <img src="img/bateria.png" alt="Bateria" class="drum-image">
+                        <h3 class="drum-title">Bateria Massa</h3>
+                        <span class="drum-description">Muito legal</span>
+                        <div class="drum-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(500+)</span>
+                        </div>
+                        <div class="drum-price">
+                            <h4>R$2500,00</h4>
+                            <button class="btn-card-add">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <img src="/img/bateria.png" alt="" class="drum-image">
-
-                <h3 class="drum-title">
-                    Bateria Massa
-                </h3>
-
-                <span class="drum-description">
-                    Muito legal
-                </span>
-
-                <div class="drum-rate">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(500+)</span>
-                </div>
-
-                <div class="drum-price">
-                    <h4>R$2500,00</h4>
-                    <button class="btn-default">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="drum">
-                <div class="drum-heart">
-                    <i class="fa solid fa-heart"></i>
-                </div>
-
-                <img src="/img/bateria.png" alt="" class="drum-image">
-
-                <h3 class="drum-title">
-                    Bateria Massa
-                </h3>
-
-                <span class="drum-description">
-                    Muito legal
-                </span>
-
-                <div class="drum-rate">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(500+)</span>
-                </div>
-
-                <div class="drum-price">
-                    <h4>R$2500,00</h4>
-                    <button class="btn-default">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="drum">
-                <div class="drum-heart">
-                    <i class="fa solid fa-heart"></i>
-                </div>
-
-                <img src="/img/bateria.png" alt="" class="drum-image">
-
-                <h3 class="drum-title">
-                    Bateria Massa
-                </h3>
-
-                <span class="drum-description">
-                    Muito legal
-                </span>
-
-                <div class="drum-rate">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(500+)</span>
-                </div>
-
-                <div class="drum-price">
-                    <h4>R$2500,00</h4>
-                    <button class="btn-default">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="drum">
-                <div class="drum-heart">
-                    <i class="fa solid fa-heart"></i>
-                </div>
-
-                <img src="/img/bateria.png" alt="" class="drum-image">
-
-                <h3 class="drum-title">
-                    Bateria Massa
-                </h3>
-
-                <span class="drum-description">
-                    Muito legal
-                </span>
-
-                <div class="drum-rate">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(500+)</span>
-                </div>
-
-                <div class="drum-price">
-                    <h4>R$2500,00</h4>
-                    <button class="btn-default">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </button>
-                </div>
-
-            </div>
-
+            </section>
         </div>
-    </section>
+
+    </main>
+
 </body>
 
 </html>
