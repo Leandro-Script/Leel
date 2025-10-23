@@ -1,45 +1,126 @@
-.form-container form {
-    /* Centraliza o texto (títulos, etc.) */
-    text-align: center !important; 
-    
-    /* Centraliza os elementos filhos (inputs, botões) horizontalmente */
-    align-items: center !important; 
-    
-    /* Garante que a largura seja responsiva, mas com limite */
-    width: 100%; 
-    max-width: 450px; /* Aumentei a largura máxima para o título caber bem */
-    
-    /* Revertendo padding se necessário, ajustado para centralização */
-    padding: 40px 60px !important;
+:root {
+    --primary-color: #ffcb45;
+    --secondary-color: #e9a209;
+    --background-light: #fff9ea;
+    --text-dark: #1d1d1d;
+    --input-bg: #f3f3f3;
 }
 
-/* 1. Sobrescreve o estilo de Borda Inferior */
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-light);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 90%;
+    padding: 40px 50px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* CABEÇALHO / LOGO */
+#nav-logo {
+    font-size: 22px;
+    color: var(--secondary-color);
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+/* TÍTULO PRINCIPAL */
+.main-title {
+    color: var(--text-dark);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* CAMPOS DE ENTRADA */
 .input-group {
-    background-color: transparent !important;
-    border-radius: 0 !important;
-    border: none !important;
-    border-bottom: 2px solid #DDDDDD !important; 
-    transition: border-bottom 0.3s ease-in-out;
-    /* Para centralizar, o input group PRECISA de 100% da largura máxima */
-    max-width: 100% !important; 
+    background-color: var(--input-bg);
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    padding: 12px 15px;
+    border-radius: 10px;
+    width: 100%;
 }
 
-/* 2. Remove o padding vertical extra para o look mais "flat" */
+.input-group i {
+    color: #a0a0a0;
+    margin-right: 12px;
+    font-size: 1.1rem;
+}
+
 .input-group input {
-    padding: 10px 0 !important;
-}
-
-/* 3. Efeito visual ao focar no campo */
-.input-group input:focus {
+    background-color: transparent;
+    border: none;
     outline: none;
+    width: 100%;
+    font-size: 1rem;
+    color: var(--text-dark);
 }
 
-/* 4. Mudar a borda inferior para a cor principal (amarela) quando focado */
-.input-group:focus-within {
-    border-bottom: 2px solid var(--primary-color) !important;
+/* BOTÃO */
+.btn-primary {
+    border-radius: 12px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 50px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 80ms ease-in;
+    cursor: pointer;
+    margin-top: 25px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 5. Mudar a cor do ícone ao focar */
-.input-group:focus-within i {
-    color: var(--primary-color) !important;
+.btn-primary:hover {
+    background-color: #f8d477;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 30px 25px;
+    }
+
+    .main-title {
+        font-size: 1.6rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 12px;
+    }
 }
