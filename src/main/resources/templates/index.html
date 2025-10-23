@@ -1,50 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Login | O Batuketa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
-    <title>Login-Batuketa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
+    <div class="container" id="container">
 
-    <main class="container">
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <i class="fas fa-headphones" id="nav-logo"> B A T U K E T A</i>
+                <h1 class="main-title">Fazer Login</h1>
 
-        <form action="">
-            <h1>Login Batuketa</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>ou use sua conta</span>
 
-            <div class="input-box">
-                <input type="email" placeholder="Usuário">
-                <i class="bx bxs-user"></i>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Usuário ou Email" />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Senha" />
+                </div>
+
+                <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+
+                <button class="btn-primary">ENTRAR</button>
+            </form>
+        </div>
+
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <i class="fas fa-headphones" id="nav-logo"> B A T U K E T A</i>
+                <h1 class="main-title">Criar Conta</h1>
+
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>ou use seu email para registro</span>
+
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Nome" />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Senha" />
+                </div>
+
+                <button class="btn-primary">CADASTRAR</button>
+            </form>
+        </div>
+
+
+        <div class="overlay-container">
+            <div class="overlay">
+
+                <div class="overlay-panel overlay-left">
+                    <h1 class="title-overlay">Bem-vindo(a) de Volta!</h1>
+                    <p class="subtitle-overlay">Para se conectar, por favor, faça login com suas informações pessoais.
+                    </p>
+                    <button class="ghost" id="signIn">FAZER LOGIN</button>
+                </div>
+
+                <div class="overlay-panel overlay-right">
+                    <h1 class="title-overlay">Novo por Aqui?</h1>
+                    <p class="subtitle-overlay">Insira seus dados pessoais e comece sua jornada musical conosco!</p>
+                    <button class="ghost" id="signUp">CADASTRAR</button>
+                </div>
             </div>
+        </div>
 
-            <div class="input-box">
-                <input type="password" placeholder="Senha">
-                <i class="bx bxs-lock-alt"></i>
-            </div>
+    </div>
 
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox">
-                    lembrar senha
-                </label>
-                <a href="#">Esqueci a senha</a>
-            </div>
-
-            <button type="submit" class="login">Login</button>
-
-            <div class="register-link">
-                <p>Não tem uma conta <a href="/cadastrar">Cadastre-se</a></p>
-            </div>
-
-        </form>
-
-    </main>
-
+        <script src="/javascript/scriptLogin.js"></script>
 </body>
 
 </html>
