@@ -40,4 +40,9 @@ public class HomeController {
     public String cadastrar() {
         return "cadastrar.html";
     }
+
+    @GetMapping("/painel")
+    public String painelUsuario() {
+        return "painelUsuario.html";
+    }
 }
