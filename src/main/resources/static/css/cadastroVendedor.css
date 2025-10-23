@@ -1,0 +1,45 @@
+.form-container form {
+    /* Centraliza o texto (títulos, etc.) */
+    text-align: center !important; 
+    
+    /* Centraliza os elementos filhos (inputs, botões) horizontalmente */
+    align-items: center !important; 
+    
+    /* Garante que a largura seja responsiva, mas com limite */
+    width: 100%; 
+    max-width: 450px; /* Aumentei a largura máxima para o título caber bem */
+    
+    /* Revertendo padding se necessário, ajustado para centralização */
+    padding: 40px 60px !important;
+}
+
+/* 1. Sobrescreve o estilo de Borda Inferior */
+.input-group {
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 2px solid #DDDDDD !important; 
+    transition: border-bottom 0.3s ease-in-out;
+    /* Para centralizar, o input group PRECISA de 100% da largura máxima */
+    max-width: 100% !important; 
+}
+
+/* 2. Remove o padding vertical extra para o look mais "flat" */
+.input-group input {
+    padding: 10px 0 !important;
+}
+
+/* 3. Efeito visual ao focar no campo */
+.input-group input:focus {
+    outline: none;
+}
+
+/* 4. Mudar a borda inferior para a cor principal (amarela) quando focado */
+.input-group:focus-within {
+    border-bottom: 2px solid var(--primary-color) !important;
+}
+
+/* 5. Mudar a cor do ícone ao focar */
+.input-group:focus-within i {
+    color: var(--primary-color) !important;
+}
