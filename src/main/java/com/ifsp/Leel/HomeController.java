@@ -3,18 +3,10 @@ package com.ifsp.Leel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.ifsp.Leel.Model.Cliente;
+
 @Controller
 public class HomeController {
-
-    @GetMapping("/")
-    public String login() {
-        return "index.html";
-    }
-
-    @GetMapping("/loja")
-    public String loja() {
-        return "page.html";
-    }
 
     @GetMapping("/produtos")
     public String produtos() {
@@ -34,11 +26,6 @@ public class HomeController {
     @GetMapping("/cadastrarVendedor")
     public String cadastrarVendedor() {
         return "cadastroVendedor.html";
-    }
-
-    @GetMapping("/cadastrar")
-    public String cadastrar() {
-        return "cadastrar.html";
     }
 
     @GetMapping("/painel")
