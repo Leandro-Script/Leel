@@ -1,9 +1,7 @@
-package com.ifsp.Leel;
+package com.ifsp.Leel.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.ifsp.Leel.Model.Cliente;
 
 @Controller
 public class HomeController {
