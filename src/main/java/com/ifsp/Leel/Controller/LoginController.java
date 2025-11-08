@@ -1,4 +1,4 @@
-package com.ifsp.Leel;
+package com.ifsp.Leel.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
