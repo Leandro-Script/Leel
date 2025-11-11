@@ -18,11 +18,6 @@ public class HomeController {
         return "detalhesProduto.html";
     }
 
-    @GetMapping("/cadastrarProduto")
-    public String cadastrarProduto() {
-        return "cadastroProduto.html";
-    }
-
     @GetMapping("/cadastrarVendedor")
     public String cadastrarVendedor() {
         return "cadastroVendedor.html";

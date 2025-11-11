@@ -7,7 +7,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/cadastroProduto.css}">
-    <link rel="icon" type="image/png" href="/img/logozin.png">
+    <link rel="icon" type="image/png" th:href="@{/img/logozin.png}">
 
     <title>Cadastrar Produto</title>
 </head>
@@ -16,35 +16,44 @@
 
     <main class="container">
 
-        <form action="">
+        <form th:action="@{/cadastrarProduto}" method="post" enctype="multipart/form-data">
             <h1>Cadastrar Produto</h1>
 
+            <div th:if="${erro}" style="color: red; text-align: center; margin-bottom: 10px;">
+                <span th:text="${erro}"></span>
+            </div>
+
             <div class="input-box">
-                <input type="text" placeholder="Nome do produto"  th:name="nome">
+                <input type="text" placeholder="Nome do produto" name="nome" required>
                 <i class="bx bxs-package"></i>
             </div>
 
             <div class="input-box">
-                <input type="number" placeholder="Valor"  th:name="valor">
+                <input type="number" placeholder="Valor" name="valor" step="0.01" required>
                 <i class="bx bxs-dollar-circle"></i>
             </div>
 
             <div class="input-box">
-                <input type="text" placeholder="Descrição"  th:name="descricao">
+                <input type="text" placeholder="Descrição" name="descricao" required>
                 <i class="bx bxs-file"></i>
             </div>
 
             <div class="input-box">
-                <input type="number" placeholder="Quantidade"  th:name="quantidade">
+                <input type="number" placeholder="Quantidade" name="quantidade" required>
                 <i class="bx bxs-calculator"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="Categoria" name="categoria" required>
+                <i class='bx bxs-purchase-tag'></i>
             </div>
 
             <div class="file-upload">
                 <label for="fileInput" class="file-label">
                     <i class="bx bxs-cloud-upload"></i>
-                    <span id="fileName">Nenhum arquivo escolhido</span>
+                    <span id="fileName">Escolher imagem...</span>
                 </label>
-                <input type="file" id="fileInput">
+                <input type="file" id="fileInput" name="imagemFile" accept="image/*">
             </div>
 
 
@@ -52,6 +61,13 @@
         </form>
 
     </main>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function () {
+            var fileName = this.files[0] ? this.files[0].name : 'Nenhum arquivo escolhido';
+            document.getElementById('fileName').textContent = fileName;
+        });
+    </script>
 
 </body>
 
