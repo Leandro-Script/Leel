@@ -18,7 +18,7 @@
 
         <div th:if="${tipoUsuario == 'CLIENTE'}">
             <form th:action="@{/meu-perfil/cliente}" th:object="${cliente}" method="post">
-                <h1>Meu Perfil (Cliente)</h1>
+                <h1>Meu Perfil</h1>
                 <input type="hidden" th:field="*{id}" />
 
                 <div class="input-box">
@@ -49,7 +49,7 @@
 
         <div th:if="${tipoUsuario == 'VENDEDOR'}">
             <form th:action="@{/meu-perfil/vendedor}" th:object="${vendedor}" method="post">
-                <h1>Meu Perfil (Vendedor)</h1>
+                <h1>Meu Perfil</h1>
                 <input type="hidden" th:field="*{id}" />
 
                 <div class="input-box">

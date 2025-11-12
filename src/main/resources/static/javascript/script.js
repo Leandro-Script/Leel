@@ -1,11 +1,9 @@
 $(document).ready(function () {
-    // Botão de menu mobile
     $('.mobile-btn').on('click', function () {
-        $('.mobile-menu').toggleClass('active'); // mostra ou esconde o menu
-        $(this).find('i').toggleClass('fa-x'); // troca o ícone (hambúrguer ↔ X)
+        $('.mobile-menu').toggleClass('active');
+        $(this).find('i').toggleClass('fa-x');
     });
 
-    // Efeito de sombra no header ao rolar
     const sections = $('section');
     const navItems = $('.nav-item');
 
@@ -21,7 +19,6 @@ $(document).ready(function () {
             header.css('box-shadow', '0px 2px 10px rgba(0, 0, 0, 0.2)');
         }
 
-        // Marcar item do menu conforme a seção visível
         sections.each(function (i) {
             const section = $(this);
             const sectionTop = section.offset().top - 100;
@@ -37,7 +34,6 @@ $(document).ready(function () {
         $(navItems[activeSectionIndex]).addClass('active');
     });
 
-    // Efeitos de aparição com ScrollReveal
     if (typeof ScrollReveal !== 'undefined') {
         ScrollReveal().reveal('.cta', {
             origin: 'left',
