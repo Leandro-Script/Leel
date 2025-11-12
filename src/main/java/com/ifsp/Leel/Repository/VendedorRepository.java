@@ -1,5 +1,7 @@
 package com.ifsp.Leel.Repository;
 
+import java.util.List; // Importado
+
 import org.springframework.stereotype.Repository;
 
 import com.ifsp.Leel.Model.Vendedor;
@@ -31,4 +33,35 @@ public class VendedorRepository {
                 .executeUpdate();
     }
 
+    @Transactional
+    public Vendedor findById(Long id) {
+        try {
+            return em.find(Vendedor.class, id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Transactional
+    public List<Vendedor> list() {
+        try {
+            return em.createQuery("SELECT v FROM Vendedor v", Vendedor.class)
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Transactional
+    public Vendedor findByNomeAndSenha(String nome, String senha) {
+        try {
+            return em.createQuery(
+                    "SELECT v FROM Vendedor v WHERE v.nome = :nome AND v.senha = :senha", Vendedor.class)
+                    .setParameter("nome", nome)
+                    .setParameter("senha", senha)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

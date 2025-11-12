@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .btn-editar {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-deletar {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Gerenciamento de Clientes</h1>
+        <a th:href="@{/login}" class="btn"
+            style="background-color: #28a745; color: white; margin-bottom: 15px; display: inline-block;">Novo
+            Cliente</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.id}">1</td>
+                    <td th:text="${cliente.nome}">Nome do Cliente</td>
+                    <td th:text="${cliente.email}">email@cliente.com</td>
+                    <td th:text="${cliente.cpf}">123.456.789-00</td>
+                    <td>
+                        <a th:href="@{/cliente/editar/{id}(id=${cliente.id})}" class="btn btn-editar">Editar</a>
+                        <a th:href="@{/cliente/deletar/{id}(id=${cliente.id})}" class="btn btn-deletar"
+                            onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+
+</html>

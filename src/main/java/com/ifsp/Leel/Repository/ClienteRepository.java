@@ -1,5 +1,7 @@
 package com.ifsp.Leel.Repository;
 
+import java.util.List; // Importado
+
 import org.springframework.stereotype.Repository;
 
 import com.ifsp.Leel.Model.Cliente;
@@ -44,4 +46,22 @@ public class ClienteRepository {
         }
     }
 
+    @Transactional
+    public Cliente findById(Long id) {
+        try {
+            return em.find(Cliente.class, id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Transactional
+    public List<Cliente> list() {
+        try {
+            return em.createQuery("SELECT c FROM Cliente c", Cliente.class)
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

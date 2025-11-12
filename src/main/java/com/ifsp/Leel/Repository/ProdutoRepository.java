@@ -67,4 +67,12 @@ public class ProdutoRepository {
                 .setParameter("maximo", maximo)
                 .getResultList();
     }
+
+    @Transactional(readOnly = true)
+    public List<Produto> listByVendedorId(Long vendedorId) {
+        return em.createQuery(
+                "SELECT p FROM Produto p WHERE p.vendedor.id = :vendedorId", Produto.class)
+                .setParameter("vendedorId", vendedorId)
+                .getResultList();
+    }
 }

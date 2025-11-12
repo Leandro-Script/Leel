@@ -1,8 +1,13 @@
 package com.ifsp.Leel.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,6 +20,10 @@ import lombok.EqualsAndHashCode;
 public class Vendedor extends Pessoa {
     @Column(name = "cnpj")
     private String cnpj;
+
+    // Um Vendedor tem Muitos Produtos
+    @OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Produto> produtos = new ArrayList<>();
 
     public Vendedor() {
     }

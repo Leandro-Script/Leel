@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Vendedores</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .btn-editar {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-deletar {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Gerenciamento de Vendedores</h1>
+        <a th:href="@{/cadastrarVendedor}" class="btn"
+            style="background-color: #28a745; color: white; margin-bottom: 15px; display: inline-block;">Novo
+            Vendedor</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CNPJ</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="vendedor : ${vendedores}">
+                    <td th:text="${vendedor.id}">1</td>
+                    <td th:text="${vendedor.nome}">Nome do Vendedor</td>
+                    <td th:text="${vendedor.email}">email@vendedor.com</td>
+                    <td th:text="${vendedor.cnpj}">00.000.000/0001-00</td>
+                    <td>
+                        <a th:href="@{/vendedor/editar/{id}(id=${vendedor.id})}" class="btn btn-editar">Editar</a>
+                        <a th:href="@{/vendedor/deletar/{id}(id=${vendedor.id})}" class="btn btn-deletar"
+                            onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+
+</html>

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Entity
@@ -31,6 +33,11 @@ public class Produto {
 
     @Column(name = "quantidade")
     private int quantidade;
+
+    // Muitos Produtos pertencem a Um Vendedor
+    @ManyToOne
+    @JoinColumn(name = "vendedor_id") // Nome da coluna no banco de dados
+    private Vendedor vendedor;
 
     public Produto() {
     }

@@ -76,6 +76,7 @@ a {
     top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
+    overflow: auto;
 }
 
 .form-container form {
