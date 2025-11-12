@@ -20,7 +20,6 @@ public class CartController {
     private static final String CART_COOKIE = "cartId";
     private static final String REMEMBER_COOKIE = "rememberCart";
 
-    // “Banco de dados” em memória: cada carrinho tem Map<SKU, Quantidade>
     private static final Map<String, Map<String, Integer>> DB = new ConcurrentHashMap<>();
 
     @GetMapping
@@ -35,15 +34,14 @@ public class CartController {
                 : touchCartCookie(resp, cartId, persistent);
 
         Map<String, Integer> items = DB.getOrDefault(id, new HashMap<>());
-        int total = items.values().stream().mapToInt(Integer::intValue).sum(); // 👈 SOMA AQUI
+        int total = items.values().stream().mapToInt(Integer::intValue).sum();
         model.addAttribute("items", items);
         model.addAttribute("cartId", id);
         model.addAttribute("persistent", persistent);
-        model.addAttribute("total", total); // 👈 envia pro HTML
+        model.addAttribute("total", total);
         return "carrinho";
     }
 
-    // ➕ Aumentar quantidade
     @PostMapping("/add")
     public String addItem(@RequestParam String sku,
             HttpServletRequest req, HttpServletResponse resp) {
@@ -59,7 +57,6 @@ public class CartController {
         return "redirect:/carrinho";
     }
 
-    // ➖ Diminuir quantidade
     @PostMapping("/remove")
     public String removeItem(@RequestParam String sku,
             HttpServletRequest req, HttpServletResponse resp) {
@@ -111,7 +108,6 @@ public class CartController {
         return "redirect:/carrinho";
     }
 
-    // Helpers
     private String issueCartId(HttpServletResponse resp, boolean persistent) {
         String id = UUID.randomUUID().toString();
         return touchCartCookie(resp, id, persistent);

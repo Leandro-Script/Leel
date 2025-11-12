@@ -45,32 +45,29 @@ public class LoginController {
     public String processarLogin(@RequestParam String nome, @RequestParam String senha,
             Model model, HttpSession session) {
 
-        // 1. Tenta logar como Cliente
         Cliente cliente = clienteRepository.findByNomeAndSenha(nome, senha);
         if (cliente != null) {
             session.setAttribute("usuarioLogado", cliente);
             session.setAttribute("tipoUsuario", "CLIENTE");
             session.setAttribute("usuarioNome", cliente.getNome());
-            return "redirect:/loja"; // Redireciona para loja
+            return "redirect:/loja";
         }
 
-        // 2. Tenta logar como Vendedor
         Vendedor vendedor = vendedorRepository.findByNomeAndSenha(nome, senha);
         if (vendedor != null) {
             session.setAttribute("usuarioLogado", vendedor);
             session.setAttribute("tipoUsuario", "VENDEDOR");
             session.setAttribute("usuarioNome", vendedor.getNome());
-            return "redirect:/meus-produtos"; // Redireciona para o painel do vendedor
+            return "redirect:/meus-produtos";
         }
 
-        // 3. Se não for nenhum dos dois
         model.addAttribute("erro", "Usuário ou senha inválidos");
         return "cadastroLogin";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.invalidate(); // Limpa a sessão
+        session.invalidate();
         return "redirect:/login";
     }
 
@@ -91,22 +88,22 @@ public class LoginController {
         String tipoUsuario = (String) session.getAttribute("tipoUsuario");
 
         if (usuarioLogado == null) {
-            return "redirect:/login"; // Não está logado
+            return "redirect:/login";
         }
 
         if ("CLIENTE".equals(tipoUsuario)) {
             model.addAttribute("cliente", (Cliente) usuarioLogado);
-            model.addAttribute("tipoUsuario", "CLIENTE"); // Passa o tipo para o HTML
-            return "painelUsuario.html"; // Sempre usa este template
+            model.addAttribute("tipoUsuario", "CLIENTE"); 
+            return "painelUsuario.html";
         }
 
         if ("VENDEDOR".equals(tipoUsuario)) {
             model.addAttribute("vendedor", (Vendedor) usuarioLogado);
-            model.addAttribute("tipoUsuario", "VENDEDOR"); // Passa o tipo para o HTML
-            return "painelUsuario.html"; // Sempre usa este template
+            model.addAttribute("tipoUsuario", "VENDEDOR"); 
+            return "painelUsuario.html"; 
         }
 
-        return "redirect:/login"; // Tipo de usuário desconhecido
+        return "redirect:/login";
     }
 
     @PostMapping("/meu-perfil/cliente")

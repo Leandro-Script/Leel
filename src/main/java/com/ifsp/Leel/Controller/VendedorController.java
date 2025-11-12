@@ -35,7 +35,7 @@ public class VendedorController {
             return "cadastroVendedor";
         }
         redirectAttributes.addFlashAttribute("sucesso", "Cadastro realizado! Faça o login.");
-        return "redirect:/login"; // Redireciona para o login após cadastrar
+        return "redirect:/login";
     }
 
     @PostMapping("/meu-perfil/vendedor")

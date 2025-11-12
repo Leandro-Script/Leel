@@ -30,7 +30,6 @@ img {
     padding: 20px;
 }
 
-/* Títulos da Página */
 .titulo-pagina {
     text-align: center;
     margin-top: 20px;
@@ -42,26 +41,24 @@ img {
     font-weight: 700;
 }
 
-.section-subtitle { /* Corrigido de "secton-subtitle" */
+.section-subtitle {
     font-size: 1.1rem;
     font-weight: 400;
     color: var(--cor-texto-claro);
 }
 
-/* Layout Principal */
 .produtos-layout {
     display: grid;
     grid-template-columns: 260px 1fr;
     gap: 30px;
 }
 
-/* Barra de Filtros */
 .filtros {
     background-color: var(--cor-branco);
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    align-self: flex-start; /* Faz o aside não esticar */
+    align-self: flex-start;
 }
 
 .filtros h3 {
@@ -123,7 +120,6 @@ img {
     transform: scale(1.02);
 }
 
-/* Grade de Produtos */
 .grid-produtos {
     width: 100%;
 }
@@ -149,7 +145,6 @@ img {
     font-size: 0.9rem;
 }
 
-/* Cards de Produto (Estilo da Home) */
 .drums {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -225,7 +220,7 @@ img {
     font-weight: 700;
 }
 
-.btn-card-add { /* Botão do card */
+.btn-card-add {
     background-color: var(--cor-primaria);
     color: var(--cor-texto);
     border: none;
@@ -241,10 +236,9 @@ img {
     transform: scale(1.1);
 }
 
-/* Responsividade */
 @media (max-width: 900px) {
     .produtos-layout {
-        grid-template-columns: 1fr; /* Coloca filtros em cima */
+        grid-template-columns: 1fr;
     }
     
     .filtros {

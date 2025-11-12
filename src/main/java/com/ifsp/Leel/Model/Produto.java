@@ -34,9 +34,8 @@ public class Produto {
     @Column(name = "quantidade")
     private int quantidade;
 
-    // Muitos Produtos pertencem a Um Vendedor
     @ManyToOne
-    @JoinColumn(name = "vendedor_id") // Nome da coluna no banco de dados
+    @JoinColumn(name = "vendedor_id")
     private Vendedor vendedor;
 
     public Produto() {

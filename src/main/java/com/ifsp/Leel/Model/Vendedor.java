@@ -21,7 +21,6 @@ public class Vendedor extends Pessoa {
     @Column(name = "cnpj")
     private String cnpj;
 
-    // Um Vendedor tem Muitos Produtos
     @OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Produto> produtos = new ArrayList<>();
 

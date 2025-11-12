@@ -26,7 +26,6 @@ body {
     padding: 20px;
 }
 
-/* Header */
 header {
     background-color: var(--cor-branco);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -117,7 +116,6 @@ header {
     cursor: pointer;
 }
 
-/* Seção Detalhe do Produto */
 .produto-detalhe-container {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -253,8 +251,6 @@ header {
     background-color: var(--cor-primaria);
 }
 
-
-/* Seção Produtos Relacionados */
 .menu {
     margin-top: 60px;
     text-align: center;
@@ -358,7 +354,6 @@ header {
     transform: scale(1.1);
 }
 
-/* Rodapé */
 .footer {
     background-color: var(--cor-primaria);
     padding: 20px 5%;
@@ -380,7 +375,6 @@ header {
     text-decoration: none;
 }
 
-/* Responsividade */
 @media (max-width: 992px) {
     .drums {
         grid-template-columns: repeat(2, 1fr);

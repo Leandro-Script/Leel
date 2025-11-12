@@ -6,7 +6,6 @@
     --input-bg: #f3f3f3;
 }
 
-/* RESET */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -23,7 +22,6 @@ body {
     padding: 20px;
 }
 
-/* CONTAINER PRINCIPAL */
 .container {
     background-color: #fff;
     border-radius: 20px;
@@ -40,7 +38,6 @@ body {
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* CABEÇALHO / LOGO */
 #nav-logo {
     font-size: 22px;
     color: var(--secondary-color);
@@ -49,7 +46,6 @@ body {
     margin-bottom: 25px;
 }
 
-/* TÍTULO PRINCIPAL */
 .main-title {
     color: var(--text-dark);
     font-size: 2rem;
@@ -57,7 +53,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* CAMPOS DE ENTRADA */
 .input-group {
     background-color: var(--input-bg);
     display: flex;
@@ -83,7 +78,6 @@ body {
     color: var(--text-dark);
 }
 
-/* BOTÃO */
 .btn-primary {
     border-radius: 12px;
     border: none;
@@ -108,7 +102,6 @@ body {
     transform: scale(0.98);
 }
 
-/* RESPONSIVIDADE */
 @media (max-width: 600px) {
     .container {
         width: 95%;

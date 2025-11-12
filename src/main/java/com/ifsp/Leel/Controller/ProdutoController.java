@@ -35,7 +35,7 @@ public class ProdutoController {
         if (tipo != null && tipo.equals("VENDEDOR")) {
             return (Vendedor) session.getAttribute("usuarioLogado");
         }
-        return null; // Não é um vendedor
+        return null;
     }
 
     @GetMapping("/meus-produtos")
