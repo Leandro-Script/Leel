@@ -190,4 +190,11 @@ public class ProdutoController {
 
         return "/img/uploads/" + nomeArquivoImagem;
     }
+
+    @GetMapping("/mostrarproduto")
+     public String mostrarproduto(){
+        return "listaProdutos.html";
+     }
+
+    
 }
