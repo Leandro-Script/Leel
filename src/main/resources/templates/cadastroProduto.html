@@ -43,9 +43,18 @@
                 <i class="bx bxs-calculator"></i>
             </div>
 
-            <div class="input-box">
-                <input type="text" placeholder="Categoria" name="categoria" required>
-                <i class='bx bxs-purchase-tag'></i>
+            <div class="input-group">
+                <i class="fa-solid fa-layer-group"></i>
+
+                <select name="categoria" id="categoria" required
+                    style="background: transparent; border: none; width: 100%; color: #1d1d1d; outline: none; font-size: 1.0rem; cursor: pointer;">
+                    <option value="" disabled selected>Selecione a Categoria</option>
+
+                    <option value="bateria">Baterias</option>
+                    <option value="pandeiro">Pandeiros</option>
+                    <option value="prato">Pratos</option>
+                    <option value="acessorio">Acessórios</option>
+                </select>
             </div>
 
             <div class="file-upload">
