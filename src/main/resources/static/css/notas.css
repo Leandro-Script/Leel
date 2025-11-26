@@ -68,7 +68,7 @@
     margin-left: 0;
 }
 
-.feedback-content p + p {
+.feedback-content p+p {
     font-style: italic;
     color: #333;
 }

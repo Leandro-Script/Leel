@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const signUpButton = document.getElementById('signUp'); 
-    const signInButton = document.getElementById('signIn'); 
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
 
     if (signUpButton) {
