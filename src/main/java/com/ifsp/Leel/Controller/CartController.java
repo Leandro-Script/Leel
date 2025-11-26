@@ -37,6 +37,8 @@ public class CartController {
             Model model) {
 
         boolean persistent = "true".equals(getCookie(req, REMEMBER_COOKIE));
+
+        // Garante que existe um ID de carrinho
         String id = (cartId == null || cartId.isBlank())
                 ? issueCartId(resp, persistent)
                 : touchCartCookie(resp, cartId, persistent);
@@ -47,30 +49,35 @@ public class CartController {
         List<Map<String, Object>> itensCarrinho = new ArrayList<>();
         double valorTotalCarrinho = 0.0;
 
-        for (Map.Entry<String, Integer> entry : cartItemsRaw.entrySet()) {
-            try {
-                Long produtoId = Long.parseLong(entry.getKey());
-                Produto produto = produtoRepository.findById(produtoId);
+        // Só processa se houver itens no mapa cru vindo do Service
+        if (cartItemsRaw != null && !cartItemsRaw.isEmpty()) {
+            for (Map.Entry<String, Integer> entry : cartItemsRaw.entrySet()) {
+                try {
+                    Long produtoId = Long.parseLong(entry.getKey());
+                    Produto produto = produtoRepository.findById(produtoId);
 
-                if (produto != null) {
-                    int quantidade = entry.getValue();
-                    double subtotal = produto.getValor() * quantidade;
+                    // Verifica se o produto existe no banco
+                    if (produto != null) {
+                        int quantidade = entry.getValue();
+                        double subtotal = produto.getValor() * quantidade;
 
-                    // Cria um mapa para representar o item na tela
-                    Map<String, Object> item = new HashMap<>();
-                    item.put("produto", produto);
-                    item.put("quantidade", quantidade);
-                    item.put("subtotal", subtotal);
+                        // Cria um mapa para representar o item na tela
+                        Map<String, Object> item = new HashMap<>();
+                        item.put("produto", produto);
+                        item.put("quantidade", quantidade);
+                        item.put("subtotal", subtotal);
 
-                    itensCarrinho.add(item);
-                    valorTotalCarrinho += subtotal;
+                        itensCarrinho.add(item);
+                        valorTotalCarrinho += subtotal;
+                    }
+                } catch (NumberFormatException e) {
+                    // Ignora IDs que não sejam números válidos
+                    continue;
                 }
-            } catch (NumberFormatException e) {
-                // Ignora IDs inválidos
-                continue;
             }
         }
 
+        // Passa a lista "itens" para o HTML
         model.addAttribute("itens", itensCarrinho);
         model.addAttribute("cartId", id);
         model.addAttribute("persistent", persistent);

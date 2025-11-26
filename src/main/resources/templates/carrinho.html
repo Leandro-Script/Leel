@@ -65,12 +65,12 @@
             style="background-color: #f8d7da; color: #721c24; padding: 10px; margin-bottom: 15px; border-radius: 5px;"
             th:text="${erro}"></div>
 
-        <div th:if="${#maps.isEmpty(items)}">
+        <div th:if="${#lists.isEmpty(itens)}">
             <p>Seu carrinho está vazio.</p>
             <a th:href="@{/loja}" class="btn-default" style="color: black;">← Voltar à Loja</a>
         </div>
 
-        <div th:if="${!#maps.isEmpty(items)}">
+        <div th:if="${not #lists.isEmpty(itens)}">
             <p style="font-size: 0.8em; color: #777; margin-bottom: 10px;">
                 <strong>ID:</strong> <span th:text="${cartId}"></span>
             </p>
@@ -153,4 +153,4 @@
 
 </body>
 
-</html>
+</html> 
