@@ -1,12 +1,6 @@
 package com.ifsp.Leel.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -14,7 +8,7 @@ import lombok.Data;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id; // Alterado para Long para compatibilidade com Repository
 
     @Column(name = "nome")
     private String nome;
@@ -49,5 +43,4 @@ public class Produto {
         this.valor = valor;
         this.quantidade = quantidade;
     }
-
 }

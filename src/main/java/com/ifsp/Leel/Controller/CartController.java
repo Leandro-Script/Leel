@@ -1,8 +1,10 @@
 package com.ifsp.Leel.Controller;
 
+import com.ifsp.Leel.Service.CartService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/carrinho")
@@ -20,7 +22,8 @@ public class CartController {
     private static final String CART_COOKIE = "cartId";
     private static final String REMEMBER_COOKIE = "rememberCart";
 
-    private static final Map<String, Map<String, Integer>> DB = new ConcurrentHashMap<>();
+    @Autowired
+    private CartService cartService;
 
     @GetMapping
     public String viewCart(
@@ -33,7 +36,7 @@ public class CartController {
                 ? issueCartId(resp, persistent)
                 : touchCartCookie(resp, cartId, persistent);
 
-        Map<String, Integer> items = DB.getOrDefault(id, new HashMap<>());
+        Map<String, Integer> items = cartService.getItems(id);
         int total = items.values().stream().mapToInt(Integer::intValue).sum();
         model.addAttribute("items", items);
         model.addAttribute("cartId", id);
@@ -52,8 +55,7 @@ public class CartController {
         else
             touchCartCookie(resp, id, persistent);
 
-        DB.computeIfAbsent(id, k -> new ConcurrentHashMap<>())
-                .merge(sku, 1, Integer::sum);
+        cartService.addItem(id, sku, 1);
         return "redirect:/carrinho";
     }
 
@@ -62,14 +64,7 @@ public class CartController {
             HttpServletRequest req, HttpServletResponse resp) {
         String id = getCookie(req, CART_COOKIE);
         if (id != null) {
-            Map<String, Integer> items = DB.get(id);
-            if (items != null && items.containsKey(sku)) {
-                int qty = items.get(sku) - 1;
-                if (qty <= 0)
-                    items.remove(sku);
-                else
-                    items.put(sku, qty);
-            }
+            cartService.removeItem(id, sku);
         }
         return "redirect:/carrinho";
     }
@@ -97,7 +92,7 @@ public class CartController {
     public String clearCart(HttpServletRequest req, HttpServletResponse resp) {
         String id = getCookie(req, CART_COOKIE);
         if (id != null)
-            DB.remove(id);
+            cartService.clearCart(id);
 
         ResponseCookie delCart = ResponseCookie.from(CART_COOKIE, "")
                 .path("/").maxAge(Duration.ZERO).build();
@@ -122,7 +117,6 @@ public class CartController {
             b.maxAge(Duration.ofDays(7));
         ResponseCookie c = b.build();
         resp.addHeader(HttpHeaders.SET_COOKIE, c.toString());
-        DB.putIfAbsent(id, new ConcurrentHashMap<>());
         return id;
     }
 

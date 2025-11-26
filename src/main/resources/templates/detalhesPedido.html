@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pedido - Leel</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        .container-detalhes {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .header-pedido {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-grupo {
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .lista-itens {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .item-pedido {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-info {
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        .item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            background: #f0f0f0;
+        }
+
+        .resumo-total {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .btn-cancelar {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .btn-cancelar:hover {
+            background-color: #c82333;
+        }
+
+        .btn-voltar {
+            color: #666;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-detalhes">
+        <div class="header-pedido">
+            <div>
+                <h2>Pedido #<span th:text="${pedido.id}"></span></h2>
+                <span th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy HH:mm')}"></span>
+            </div>
+            <div>
+                <strong style="display:block; text-align:right;">Status</strong>
+                <span th:text="${pedido.status}"></span>
+            </div>
+        </div>
+
+        <div class="info-grupo">
+            <span class="info-label">Cliente:</span>
+            <span th:text="${pedido.cliente.nome}"></span>
+        </div>
+        <div class="info-grupo">
+            <span class="info-label">Email:</span>
+            <span th:text="${pedido.cliente.email}"></span>
+        </div>
+
+        <h3>Itens do Pedido</h3>
+        <ul class="lista-itens">
+            <li th:each="item : ${pedido.itens}" class="item-pedido">
+                <img th:src="${item.produto.imagem != null ? item.produto.imagem : '/img/default.png'}" alt="Produto"
+                    class="item-img">
+
+                <div class="item-info">
+                    <div style="font-weight: bold;" th:text="${item.produto.nome}">Nome do Produto</div>
+                    <div style="color: #666; font-size: 0.9em;">
+                        Qtd: <span th:text="${item.quantidade}"></span> x
+                        R$ <span th:text="${#numbers.formatDecimal(item.precoUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+                    </div>
+                </div>
+
+                <div style="font-weight: bold;">
+                    R$ <span th:text="${#numbers.formatDecimal(item.subtotal, 1, 'POINT', 2, 'COMMA')}"></span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="resumo-total">
+            Total: R$ <span th:text="${#numbers.formatDecimal(pedido.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
+        </div>
+
+        <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="/pedidos/meus-pedidos" class="btn-voltar">&larr; Voltar</a>
+
+            <form th:if="${pedido.status == 'AGUARDANDO PAGAMENTO' or pedido.status == 'PAGO'}"
+                th:action="@{/pedidos/cancelar/{id}(id=${pedido.id})}" method="post"
+                onsubmit="return confirm('Tem certeza que deseja cancelar este pedido?');">
+                <button type="submit" class="btn-cancelar">Cancelar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

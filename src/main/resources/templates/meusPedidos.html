@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos - Leel</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+    <style>
+        .container-pedidos {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .titulo-secao {
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            color: #333;
+        }
+
+        .table-pedidos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table-pedidos th {
+            background-color: #f8f9fa;
+            text-align: left;
+            padding: 12px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .table-pedidos td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-AGUARDANDO {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-PAGO {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-CANCELADO {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-detalhes {
+            background-color: #007bff;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .btn-detalhes:hover {
+            background-color: #0056b3;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="/">Voltar para Loja</a>
+        </nav>
+    </header>
+
+    <div class="container-pedidos">
+        <h2 class="titulo-secao">Meus Pedidos</h2>
+
+        <div th:if="${sucesso}" style="color: green; margin-bottom: 15px;" th:text="${sucesso}"></div>
+        <div th:if="${erro}" style="color: red; margin-bottom: 15px;" th:text="${erro}"></div>
+
+        <div th:if="${#lists.isEmpty(pedidos)}" class="empty-state">
+            <h3>Você ainda não fez nenhum pedido.</h3>
+            <p>Que tal dar uma olhada nos nossos produtos?</p>
+            <a href="/" class="btn-detalhes" style="margin-top: 10px; display: inline-block;">Ir às compras</a>
+        </div>
+
+        <table th:if="${not #lists.isEmpty(pedidos)}" class="table-pedidos">
+            <thead>
+                <tr>
+                    <th># Pedido</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pedido : ${pedidos}">
+                    <td th:text="'#' + ${pedido.id}"></td>
+                    <td th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td>
+                        <span class="status-badge" th:classappend="'status-' + ${pedido.status.split(' ')[0]}"
+                            th:text="${pedido.status}"></span>
+                    </td>
+                    <td th:text="'R$ ' + ${#numbers.formatDecimal(pedido.valorTotal, 1, 'POINT', 2, 'COMMA')}"></td>
+                    <td>
+                        <a th:href="@{/pedidos/{id}(id=${pedido.id})}" class="btn-detalhes">Ver Detalhes</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
