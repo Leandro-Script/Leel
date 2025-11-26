@@ -175,28 +175,6 @@ a {
     text-decoration: underline;
 }
 
-.social-container {
-    margin: 15px 0;
-}
-
-.social-container .social {
-    border: 1px solid #DDDDDD;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 8px;
-    height: 40px;
-    width: 40px;
-    color: var(--text-dark);
-    font-size: 1.1rem;
-}
-
-.social-container .social:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-}
-
 .overlay-container {
     position: absolute;
     top: 0;
