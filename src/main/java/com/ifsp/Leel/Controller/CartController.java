@@ -1,5 +1,7 @@
 package com.ifsp.Leel.Controller;
 
+import com.ifsp.Leel.Model.Produto;
+import com.ifsp.Leel.Repository.ProdutoRepository;
 import com.ifsp.Leel.Service.CartService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,8 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/carrinho")
@@ -25,23 +26,56 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
     @GetMapping
     public String viewCart(
             @CookieValue(value = CART_COOKIE, required = false) String cartId,
             HttpServletRequest req,
             HttpServletResponse resp,
             Model model) {
+
         boolean persistent = "true".equals(getCookie(req, REMEMBER_COOKIE));
         String id = (cartId == null || cartId.isBlank())
                 ? issueCartId(resp, persistent)
                 : touchCartCookie(resp, cartId, persistent);
 
-        Map<String, Integer> items = cartService.getItems(id);
-        int total = items.values().stream().mapToInt(Integer::intValue).sum();
-        model.addAttribute("items", items);
+        Map<String, Integer> cartItemsRaw = cartService.getItems(id);
+
+        // Lista para guardar os detalhes (Produto + Quantidade + Subtotal)
+        List<Map<String, Object>> itensCarrinho = new ArrayList<>();
+        double valorTotalCarrinho = 0.0;
+
+        for (Map.Entry<String, Integer> entry : cartItemsRaw.entrySet()) {
+            try {
+                Long produtoId = Long.parseLong(entry.getKey());
+                Produto produto = produtoRepository.findById(produtoId);
+
+                if (produto != null) {
+                    int quantidade = entry.getValue();
+                    double subtotal = produto.getValor() * quantidade;
+
+                    // Cria um mapa para representar o item na tela
+                    Map<String, Object> item = new HashMap<>();
+                    item.put("produto", produto);
+                    item.put("quantidade", quantidade);
+                    item.put("subtotal", subtotal);
+
+                    itensCarrinho.add(item);
+                    valorTotalCarrinho += subtotal;
+                }
+            } catch (NumberFormatException e) {
+                // Ignora IDs inválidos
+                continue;
+            }
+        }
+
+        model.addAttribute("itens", itensCarrinho);
         model.addAttribute("cartId", id);
         model.addAttribute("persistent", persistent);
-        model.addAttribute("total", total);
+        model.addAttribute("total", valorTotalCarrinho);
+
         return "carrinho";
     }
 

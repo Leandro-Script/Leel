@@ -105,8 +105,8 @@
                         <div class="drum-price">
                             <h4 th:text="${#numbers.formatCurrency(produto.valor)}">R$2500,00</h4>
                             <form th:action="@{/carrinho/add}" method="post">
-                                <input type="hidden" name="sku" value="bateria-massa">
-                                <button type="submit" class="btn-default">
+                                <input type="hidden" name="sku" th:value="${produto.id}">
+                                <button type="submit" class="btn-card-add" style="border:none; cursor:pointer;">
                                     <i class="fa-solid fa-basket-shopping"></i>
                                 </button>
                             </form>
