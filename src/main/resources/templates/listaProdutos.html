@@ -97,13 +97,15 @@
 
                         <div class="drum-price">
                             <h4 th:text="${#numbers.formatCurrency(produto.valor)}">R$2500,00</h4>
-                            <button class="btn-card-add">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </button>
+                            <form th:action="@{/carrinho/add}" method="post">
+                                <input type="hidden" name="sku" value="bateria-massa">
+                                <button type="submit" class="btn-default">
+                                    <i class="fa-solid fa-basket-shopping"></i>
+                                </button>
+                            </form>
                         </div>
 
                     </div>
-                    
 
                     <div th:if="${produtos == null or produtos.isEmpty()}" style="text-align: center; width: 100%;">
                         <h3>Nenhum produto encontrado para esta categoria.</h3>

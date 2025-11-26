@@ -17,26 +17,7 @@
         <nav class="nav-bar">
             <a href="/"><i class="fas fa-headphones" id="nav-logo"> B A T U K E T A</i></a>
 
-            <ul class="nav-list">
-                <li class="nav-item active">
-                    <a href="#home">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#produtos">Produtos</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#notas">Avaliações</a>
-                </li>
-
-            </ul>
-
             <div class="nav-actions">
-                <div class="search-box">
-                    <input type="text" placeholder="Buscar...">
-                    <i class='bx bx-search'></i>
-                </div>
 
                 <a th:unless="${session.usuarioLogado}" href="/login" class="nav-icon">
                     <i class='bx bx-user'></i> </a>
