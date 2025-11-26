@@ -38,30 +38,25 @@ public class CartController {
 
         boolean persistent = "true".equals(getCookie(req, REMEMBER_COOKIE));
 
-        // Garante que existe um ID de carrinho
         String id = (cartId == null || cartId.isBlank())
                 ? issueCartId(resp, persistent)
                 : touchCartCookie(resp, cartId, persistent);
 
         Map<String, Integer> cartItemsRaw = cartService.getItems(id);
 
-        // Lista para guardar os detalhes (Produto + Quantidade + Subtotal)
         List<Map<String, Object>> itensCarrinho = new ArrayList<>();
         double valorTotalCarrinho = 0.0;
 
-        // Só processa se houver itens no mapa cru vindo do Service
         if (cartItemsRaw != null && !cartItemsRaw.isEmpty()) {
             for (Map.Entry<String, Integer> entry : cartItemsRaw.entrySet()) {
                 try {
                     Long produtoId = Long.parseLong(entry.getKey());
                     Produto produto = produtoRepository.findById(produtoId);
 
-                    // Verifica se o produto existe no banco
                     if (produto != null) {
                         int quantidade = entry.getValue();
                         double subtotal = produto.getValor() * quantidade;
 
-                        // Cria um mapa para representar o item na tela
                         Map<String, Object> item = new HashMap<>();
                         item.put("produto", produto);
                         item.put("quantidade", quantidade);
@@ -71,13 +66,11 @@ public class CartController {
                         valorTotalCarrinho += subtotal;
                     }
                 } catch (NumberFormatException e) {
-                    // Ignora IDs que não sejam números válidos
                     continue;
                 }
             }
         }
 
-        // Passa a lista "itens" para o HTML
         model.addAttribute("itens", itensCarrinho);
         model.addAttribute("cartId", id);
         model.addAttribute("persistent", persistent);
