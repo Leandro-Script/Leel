@@ -1,6 +1,6 @@
 package com.ifsp.Leel.Repository;
 
-import java.util.List; // Importado
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 

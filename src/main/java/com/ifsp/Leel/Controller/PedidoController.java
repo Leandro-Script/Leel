@@ -3,7 +3,7 @@ package com.ifsp.Leel.Controller;
 import com.ifsp.Leel.Model.*;
 import com.ifsp.Leel.Repository.PedidoRepository;
 import com.ifsp.Leel.Repository.ProdutoRepository;
-import com.ifsp.Leel.Service.CartService; // Agora ele encontra o Service
+import com.ifsp.Leel.Service.CartService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,7 +88,6 @@ public class PedidoController {
 
         for (Map.Entry<String, Integer> entry : cartItems.entrySet()) {
             try {
-                // Aqui o Long.parseLong funciona porque mudamos o Produto para Long
                 Long produtoId = Long.parseLong(entry.getKey());
                 int quantidade = entry.getValue();
 

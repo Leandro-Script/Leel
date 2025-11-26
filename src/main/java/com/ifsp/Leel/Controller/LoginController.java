@@ -93,14 +93,14 @@ public class LoginController {
 
         if ("CLIENTE".equals(tipoUsuario)) {
             model.addAttribute("cliente", (Cliente) usuarioLogado);
-            model.addAttribute("tipoUsuario", "CLIENTE"); 
+            model.addAttribute("tipoUsuario", "CLIENTE");
             return "painelUsuario.html";
         }
 
         if ("VENDEDOR".equals(tipoUsuario)) {
             model.addAttribute("vendedor", (Vendedor) usuarioLogado);
-            model.addAttribute("tipoUsuario", "VENDEDOR"); 
-            return "painelUsuario.html"; 
+            model.addAttribute("tipoUsuario", "VENDEDOR");
+            return "painelUsuario.html";
         }
 
         return "redirect:/login";

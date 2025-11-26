@@ -192,9 +192,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/mostrarproduto")
-     public String mostrarproduto(){
+    public String mostrarproduto() {
         return "listaProdutos.html";
-     }
-
-    
+    }
 }

@@ -8,7 +8,7 @@ import lombok.Data;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Alterado para Long para compatibilidade com Repository
+    private Long id;
 
     @Column(name = "nome")
     private String nome;

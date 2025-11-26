@@ -24,5 +24,4 @@ public class Cliente extends Pessoa {
         super(nome, email, senha);
         this.cpf = cpf;
     }
-
 }

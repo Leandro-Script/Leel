@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class CartService {
 
-    // Armazena os carrinhos em memória
     private static final Map<String, Map<String, Integer>> DB = new ConcurrentHashMap<>();
 
     public Map<String, Integer> getItems(String cartId) {

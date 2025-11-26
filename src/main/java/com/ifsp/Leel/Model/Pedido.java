@@ -17,7 +17,6 @@ public class Pedido {
     @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
 
-    // Status: AGUARDANDO, PAGO, ENVIADO, CANCELADO
     @Column(name = "status")
     private String status;
 
@@ -36,7 +35,6 @@ public class Pedido {
         this.status = "AGUARDANDO";
     }
 
-    // Método auxiliar para adicionar itens e manter a consistência
     public void adicionarItem(ItemPedido item) {
         itens.add(item);
         item.setPedido(this);
