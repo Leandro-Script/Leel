@@ -79,13 +79,13 @@
                 <label>
                     <input type="checkbox" name="on" th:checked="${persistent}"> Lembrar carrinho por 7 dias
                 </label>
-                <button type="submit" class="btn-small">Salvar pref.</button>
+                <button type="submit" class="btn-default">Salvar</button>
             </form>
 
             <table class="cart-table">
                 <thead>
                     <tr>
-                        <th>Produto (SKU)</th>
+                        <th>Produto</th>
                         <th>Quantidade</th>
                     </tr>
                 </thead>
@@ -96,14 +96,14 @@
                             <div class="qty-controls">
                                 <form th:action="@{/carrinho/remove}" method="post" style="display:inline;">
                                     <input type="hidden" name="sku" th:value="${entry.key}">
-                                    <button type="submit" class="btn-small">−</button>
+                                    <button type="submit" class="btn-default">−</button>
                                 </form>
 
                                 <span th:text="${entry.value}" class="qty-number"></span>
 
                                 <form th:action="@{/carrinho/add}" method="post" style="display:inline;">
                                     <input type="hidden" name="sku" th:value="${entry.key}">
-                                    <button type="submit" class="btn-small">+</button>
+                                    <button type="submit" class="btn-default">+</button>
                                 </form>
                             </div>
                         </td>
@@ -119,14 +119,14 @@
             </div>
 
             <div class="actions">
-                <a th:href="@{/loja}" class="btn" style="background-color: #6c757d;">← Continuar Comprando</a>
+                <a th:href="@{/loja}" class="btn-default">← Continuar Comprando</a>
 
                 <form th:action="@{/carrinho/limpar}" method="post">
-                    <button class="btn" type="submit" style="background-color: #dc3545;">Esvaziar</button>
+                    <button class="btn-default" type="submit">Esvaziar</button>
                 </form>
 
                 <form th:action="@{/pedidos/finalizar}" method="post">
-                    <button type="submit" class="btn" style="background-color: #28a745;">Finalizar Compra</button>
+                    <button type="submit" class="btn-default">Finalizar Compra</button>
                 </form>
             </div>
         </div>
