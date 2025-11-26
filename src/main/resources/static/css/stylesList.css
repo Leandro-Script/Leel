@@ -240,7 +240,7 @@ img {
     .produtos-layout {
         grid-template-columns: 1fr;
     }
-    
+
     .filtros {
         width: 100%;
     }
