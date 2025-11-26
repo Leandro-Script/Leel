@@ -6,10 +6,76 @@
     <title>Seu Carrinho</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link rel="icon" type="image/png" href="/img/logozin.png">
 </head>
 
 <body>
+
+    <header>
+        <nav class="nav-bar">
+            <a href="/"><i class="fas fa-headphones" id="nav-logo"> B A T U K E T A</i></a>
+
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#produtos">Produtos</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#notas">Avaliações</a>
+                </li>
+
+            </ul>
+
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar...">
+                    <i class='bx bx-search'></i>
+                </div>
+
+                <a th:unless="${session.usuarioLogado}" href="/login" class="nav-icon">
+                    <i class='bx bx-user'></i> </a>
+
+                <a th:if="${session.usuarioLogado}" href="/meu-perfil" class="nav-icon">
+                    <i class='bx bxs-user-circle'></i> </a>
+
+                <a href="/carrinho" class="nav-icon">
+                    <i class='bx bx-cart'></i>
+                </a>
+
+                <a th:if="${session.usuarioLogado}" href="/logout" class="nav-icon">
+                    <i class='bx bx-log-out'></i> </a>
+            </div>
+            <button class="mobile-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+
+
+        <div class="mobile-menu">
+            <ul class="mobile-nav-list">
+                <li class="nav-item">
+                    <a href="#home">Início</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#sobre">Sobre</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#instrumentos">Instrumentos</a>
+                </li>
+            </ul>
+
+            <button class="btn-default">Comprar</button>
+
+        </div>
+    </header>
 
     <div class="cart-container">
         <h1><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h1>
@@ -25,7 +91,7 @@
 
         <div th:if="${#maps.isEmpty(items)}">
             <p>Seu carrinho está vazio.</p>
-            <a th:href="@{/loja}" class="btn">← Voltar à Loja</a>
+            <a th:href="@{/loja}" class="btn-default" style="color: black;">← Voltar à Loja</a>
         </div>
 
         <div th:if="${!#maps.isEmpty(items)}">
